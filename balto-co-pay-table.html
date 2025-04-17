@@ -1,0 +1,103 @@
+<html><head>
+    <title>2024 Baltimore County government pay</title>
+  
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width" />
+  
+  
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+  
+  
+    <link href="https://cdn.datatables.net/v/dt/dt-2.2.2/r-3.0.4/datatables.min.css" rel="stylesheet" integrity="sha384-gmZ5jterufNKMboaPX/+AZbRRbDF+z379XQUHv6DYWg2o8yTKtN/tMySXHexqf8y" crossorigin="anonymous">
+   
+    <script src="https://cdn.datatables.net/v/dt/dt-2.2.2/r-3.0.4/datatables.min.js" integrity="sha384-340kE+RFFzUA/C9OCZW0VbqKLMOXLTO4/ZfWMEI/eBfwR1YuVsxZgZx/kobR4cbc" crossorigin="anonymous"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/2.3.1/luxon.min.js"></script>
+
+  
+    
+  
+    <link rel="stylesheet" href="https://use.typekit.net/mlb5rgi.css">
+  <style>
+      body {
+          font-family: "droid-sans", sans-serif;
+          font-size:.91em;
+  
+      }
+      #tbl24 {
+          font-family: "droid-sans", sans-serif;
+          font-size:.96em;
+      }
+    #dt-search-0 {
+        font-size: 16px;
+    }
+  </style>
+  </head><body>
+  <script>
+  
+  DataTable.ext.errMode = 'none';
+  
+  DataTable.datetime('M/d/yyyy');
+
+    $(document).ready(function() {
+  
+       
+    
+      new DataTable('#tbl24', {
+      ajax: 'https://raw.githubusercontent.com/Baltimore-Sun/2024-balto-co-pay/main/bcosaltbl.json?v2',
+      scrollX: true,
+      order: [[3, 'des']],
+      pageLength: 20,
+      responsive: true,
+      lengthChange: false,
+      layout: {
+      topStart: 'search',
+      topEnd: null,
+      bottomStart: 'info',
+      bottomEnd: 'paging'
+  },
+      columns: [
+          { data: 'Name' },
+          { data: 'Title' },
+          { data: 'Department' },
+          { data: 'Gross pay', orderSequence: ['desc', 'asc'], render: $.fn.dataTable.render.number(",", ".", 0, "$") },
+          { data: 'Overtime', orderSequence: ['desc', 'asc'], render: $.fn.dataTable.render.number(",", ".", 0, "$") }, 
+          { data: 'Bonus', orderSequence: ['desc', 'asc'], render: $.fn.dataTable.render.number(",", ".", 0, "$") }, 
+          { data: 'Base pay (annualized)', orderSequence: ['desc', 'asc'], render: $.fn.dataTable.render.number(",", ".", 0, "$") },   
+          { data: 'Hire date' }
+        ]
+  });
+  
+   
+  
+   
+  
+    });
+    
+   
+    </script>
+  
+  
+  <table id="tbl24" class="display" style="font-family: 'Droid Sans', sans-serif;font-size:.96em;">
+      <thead>
+          <tr>
+              <th>Name</th>
+              <th>Title</th>
+              <th>Department</th>
+              <th>Gross pay</th>
+              <th>Overtime</th>
+              <th>Bonus</th>
+              <th>Base pay (annualized)</th>
+              <th>Hire date</th>
+          </tr>
+      </thead>
+      
+  </table>
+  
+  
+  
+  </body>
+  </html>
